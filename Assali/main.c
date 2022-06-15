@@ -14,13 +14,13 @@
 
 int main(void)
 {
-int ret_val;
+int return_value;
 /* return value */
 	
-ret_val = prompt();
+return_value = prompt();
 	
-if (ret_val != 0)
-	return (ret_val);
+if (return_value != 0)
+	return (return_value);
 
 return (0);
 }
