@@ -10,7 +10,8 @@
 
 void read_cmd(char **argv, char *cmd, ssize_t line_size)
 {
-int i, j;
+int a;
+int j;
 char *ptr;
 char special_char[7] = {34, 39, 96, 92, 42, 38, 35};
 
@@ -22,11 +23,11 @@ ptr = malloc(sizeof(char) * line_size);
 if (!ptr)
 	exit(EXIT_FAILURE);
 
-for (i = 0; i < line_size; i++)
+for (a = 0; a < line_size; a++)
 {
 	for (j = 0; j < 7; j++)
 	{
-		if (cmd[i] == special_char[j])
+		if (cmd[a] == special_char[j])
 		{
 			write(2, ":( Do not use special characters\n", 33);
 			free(cmd);
@@ -34,9 +35,9 @@ for (i = 0; i < line_size; i++)
 			return;
 		}
 	}
-	ptr[i] = cmd[i];
+	ptr[a] = cmd[a];
 }
-ptr[i] = '\0';
+ptr[a] = '\0';
 
 if (fork() != 0)
 {
