@@ -1,52 +1,52 @@
 #include "shell.h"
 
 /**
- * read_cmd - Function to read and execute inputs
- * @argv: double pointer to tokenified input
- * @cmd: exact command line input
- * @line_size: length of cmd
+ * read_cmd - Read inputs from prompt
+ * @cmd: pointer to inputs from prompt
+ * @line_size: number of input characters
  *
+ * Return: void
  */
-
-void read_cmd(char **argv, char *cmd, ssize_t line_size)
+void read_cmd(char *cmd, ssize_t line_size)
 {
 int i, j;
 char *ptr;
-char special_char[7] = {34, 39, 96, 92, 42, 38, 35};
+char *argv[] = {NULL, NULL};
+char special_char[8] = {34, 39, 96, 92, 42, 38, 35, 32};
 
 if (!cmd)
 	exit(EXIT_FAILURE);
-
 ptr = malloc(sizeof(char) * line_size);
-
 if (!ptr)
 	exit(EXIT_FAILURE);
-
+argv[0] = ptr;
 for (i = 0; i < line_size; i++)
 {
-	for (j = 0; j < 7; j++)
+	for (j = 0; j < 8; j++)
 	{
 		if (cmd[i] == special_char[j])
 		{
-			write(2, ":( Do not use special characters\n", 33);
-			free(cmd);
-			prompt();
+			write(2, "./shell: No such file or directory\n", 35);
+			free(cmd), prompt();
 			return;
 		}
 	}
-	ptr[i] = cmd[i];
+	if ((cmd[i] >= 'a' && cmd[i] <= 'z') || cmd[i] == '/')
+		ptr[i] = cmd[i];
+	else
+	{
+		write(2, "./shell: No such file or directory\n", 35);
+		free(cmd), prompt();
+	}
 }
 ptr[i] = '\0';
-
 if (fork() != 0)
 {
-	wait(NULL);
-	free(cmd);
-	prompt();
+	wait(NULL), free(cmd), prompt();
 }
 else
 {
-	if (execve(argv[0], argv, NULL) == -1)
-		write(2, ":( File does not exist\n", 23);
+	if (execve(ptr, argv, NULL) == -1)
+		write(2, "./shell: No such file or directory\n", 35);
 }
 }
