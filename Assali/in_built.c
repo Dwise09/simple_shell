@@ -4,8 +4,8 @@
  * Hello Frank -> PLEASE, TAKE NOTE!!
  * I used atoi() to convert from ascii to integer, we have to create ours
  */
-/*global variable for adding environment variables */
 
+/*global variable for adding environment variables */
 char **my_environ = NULL;
 
 /**
@@ -14,7 +14,6 @@ char **my_environ = NULL;
  * @argv: command (tokenified)
  * Return: val
  */
-
 int _setenv(int argc, char **argv)
 {
 int val, env_len = 0;
@@ -23,7 +22,7 @@ if (!my_environ)
 	my_environ = environ;
 
 while (my_environ[env_len])
-	env_len++;
+		env_len++;
 
 if (argc != 3)
 {
@@ -76,8 +75,7 @@ for (i = 0; my_environ[i]; i++)
 		return 0; 
 	}
 }
-return 1; 
-/* no match, create the variable */
+return 1; /* no match, create the variable */
 }
 
 /**
@@ -86,7 +84,6 @@ return 1;
  * @my_environ: environment variable array
  * Return: 1, always success
  */
-
 int create_env(char **argv,  int env_len)
 {
 int i;
@@ -119,7 +116,6 @@ return 1;
  * @argc: argument count
  * Return:
  */
-
 int _unsetenv(char **argv)
 {
 int env_len, i, j, checker = 0;
@@ -171,7 +167,6 @@ return 0;
  * @argv: argument vector
  * Return: 0 for success, -1 for failure
  */
-
 int change_dir(int argc, char **argv)
 {
 int val, i;
