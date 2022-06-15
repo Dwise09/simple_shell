@@ -10,19 +10,19 @@
 
 int count_tok(char *cmd, char *delim)
 {
-int n = 0;
-char *token;
+int a = 0;
+char *tok;
 
-token = strtok(cmd, delim);
+tok = strtok(cmd, delim);
 
-while (token)
+while (tok)
 {
-	n++;
-	token = strtok(NULL, delim);
+	a++;
+	tok = strtok(NULL, delim);
 }
 
-free(token);
-return (n);
+free(tok);
+return (a);
 }
 
 /**
@@ -34,11 +34,11 @@ return (n);
 
 int count_tok_char(char *token)
 {
-int n;
+int a;
 
-for (n = 0; token[n]; )
-	n++;
-return (n);
+for (a = 0; token[n]; )
+	a++;
+return (a);
 }
 
 /**
