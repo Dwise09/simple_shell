@@ -6,7 +6,6 @@
  * @argc: number of tokens or argument count (argc)
  * Return: 1 on failure, 0 on success
  */
-
 int exit_process(int argc, char **argv)
 {
 int ret_val = 0, i;
@@ -38,7 +37,6 @@ return (0);
 /**
  * update_pwd - updates the present working directory
  */
-
 void update_pwd(void)
 {
 char *buf = malloc(sizeof(char) * 50);
@@ -68,7 +66,6 @@ return;
 /**
  * print_pwd - prints the current working directory
  */
-
 void print_pwd(void)
 {
 char *buf = malloc(sizeof(char) * 100);
@@ -76,6 +73,6 @@ char *buf = malloc(sizeof(char) * 100);
 getcwd(buf, 100);
 	
 printf("%s\n", buf); /* use our own function */
-free(buf);
+free(buf);	
 prompt();
 }
