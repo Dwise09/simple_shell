@@ -1,13 +1,18 @@
 #include "shell.h"
 
 /**
- * main - call shell prompt
+ * main - start shell
  *
- * Return: (0)
+ * Return: void
  */
 
 int main(void)
 {
-prompt();
+int ret_val;
+
+ret_val = prompt();
+if (ret_val != 0)
+	return (ret_val);
+
 return (0);
 }
